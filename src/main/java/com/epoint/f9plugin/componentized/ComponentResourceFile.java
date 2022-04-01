@@ -1,5 +1,7 @@
 package com.epoint.f9plugin.componentized;
 
+import com.epoint.f9plugin.util.FileUtil;
+import com.intellij.openapi.ui.MessageDialogBuilder;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.sun.istack.NotNull;
@@ -27,21 +29,30 @@ public class ComponentResourceFile {
     }
 
     public void copyToDirectory(@NotNull String directoryPath) throws IOException {
-        String containingFileDirPath;
         String relativeDir = getRelativeDir();
         if (StringUtil.isEmpty(relativeDir)) {
-            containingFileDirPath = directoryPath;
+            relativeDir = "";
+        } else if (relativeDir.contains("/")) {
+            String root = relativeDir.substring(0, relativeDir.indexOf("/"));
+            MessageDialogBuilder.YesNo yesNo = MessageDialogBuilder.yesNo("根目录", "检测到根目录：" + root + "，" + "是否去除？");
+            if (yesNo.isYes()) {
+                relativeDir = relativeDir.substring(relativeDir.indexOf("/") + 1);
+            }
+        } else {
+            String root = relativeDir;
+            MessageDialogBuilder.YesNo yesNo = MessageDialogBuilder.yesNo("根目录", "检测到根目录：" + root + "，" + "是否去除？");
+            if (yesNo.isYes()) {
+                relativeDir = "";
+            }
         }
-        else if (relativeDir.contains("/")) {
-
-        }
+        String containingFileDirPath = directoryPath + "/" + relativeDir;
+        FileUtil.copyFileToTargetDirectory(containingFileDirPath,virtualFile);
     }
 
     public String getRelativeDir() {
         if (relativePath.contains("/")) {
             return relativePath.substring(0, relativePath.lastIndexOf("/"));
-        }
-        else {
+        } else {
             return "";
         }
     }

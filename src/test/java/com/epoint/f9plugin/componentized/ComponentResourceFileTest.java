@@ -44,7 +44,7 @@ public class ComponentResourceFileTest {
         new ComponentResourceFile(virtualFile);
 
         String path2 = "E:/xmmavenrepositry/shanghaijinshan/com/epoint/frame/epoint-frame-sso/9.5.0-sp2/epoint-frame-sso-9.5.0-sp2.jar!/META-INF/resources";
-        doReturn(path).when(virtualFile).getPath();
+        doReturn(path2).when(virtualFile).getPath();
         thrown.expect(IllegalComponentResourceFileException.class);
         thrown.expectMessage("virtualFile path is not a valid component resource file path");
         new ComponentResourceFile(virtualFile);
