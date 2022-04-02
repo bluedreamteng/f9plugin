@@ -21,17 +21,6 @@ public class ComponentResourceFileTest {
         new ComponentResourceFile(null);
     }
 
-
-    @Test
-    public void constructor_notfile_IllegalComponentResourceFileException() throws IllegalComponentResourceFileException {
-        VirtualFile virtualFile = mock(VirtualFile.class);
-        doReturn(true).when(virtualFile).isDirectory();
-
-        thrown.expect(IllegalComponentResourceFileException.class);
-        thrown.expectMessage("virtualFile must be a file");
-        new ComponentResourceFile(virtualFile);
-    }
-
     @Test
     public void constructor_notvalidpath_IllegalComponentResourceFileException() throws IllegalComponentResourceFileException {
         VirtualFile virtualFile = mock(VirtualFile.class);

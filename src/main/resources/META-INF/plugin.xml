@@ -14,11 +14,17 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <applicationService serviceImplementation="com.epoint.f9plugin.settings.F9ProjectSettingsState"/>
+        <projectConfigurable parentId="tools" instance="com.epoint.f9plugin.settings.F9SettingsConfigurable"
+                             id="com.epoint.f9plugin.settings.F9SettingsConfigurable"
+                             displayName="F9 Plugin" nonDefaultProject="true"
+        />
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="testaction" class="com.epoint.f9plugin.TestAction" text="testaction" description="testaction">
+        <action id="CopyComponentResourceFileAction" class="com.epoint.f9plugin.action.CopyComponentResourceFileAction" text="Copy Component Resource File" description="Copy Component Resource File">
+            <keyboard-shortcut first-keystroke="alt Z" keymap="$default"/>
             <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
     </actions>

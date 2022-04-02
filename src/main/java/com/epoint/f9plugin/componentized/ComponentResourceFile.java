@@ -17,9 +17,6 @@ public class ComponentResourceFile {
         if (virtualFile == null) {
             throw new IllegalComponentResourceFileException("virtualFile must not be null");
         }
-        if (virtualFile.isDirectory()) {
-            throw new IllegalComponentResourceFileException("virtualFile must be a file");
-        }
 
         if (!virtualFile.getPath().contains(COMPONENT_RESOURCE_PATH_FLAG)) {
             throw new IllegalComponentResourceFileException("virtualFile path is not a valid component resource file path");
