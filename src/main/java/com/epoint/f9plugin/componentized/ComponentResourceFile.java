@@ -4,7 +4,7 @@ import com.epoint.f9plugin.util.FileUtil;
 import com.intellij.openapi.ui.MessageDialogBuilder;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.sun.istack.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
