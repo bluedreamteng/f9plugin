@@ -6,6 +6,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.io.IOException;
 
 public class ComponentResourceFile {
@@ -41,7 +42,7 @@ public class ComponentResourceFile {
                 relativeDir = "";
             }
         }
-        String containingFileDirPath = directoryPath + "/" + relativeDir;
+        String containingFileDirPath = directoryPath + File.pathSeparator + relativeDir;
         return FileUtil.copyFileToTargetDirectory(containingFileDirPath,virtualFile);
     }
 
