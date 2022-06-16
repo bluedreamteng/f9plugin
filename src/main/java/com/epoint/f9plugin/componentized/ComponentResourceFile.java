@@ -17,7 +17,6 @@ public class ComponentResourceFile {
         if (virtualFile == null) {
             throw new IllegalComponentResourceFileException("virtualFile must not be null");
         }
-
         if (!virtualFile.getPath().contains(COMPONENT_RESOURCE_PATH_FLAG)) {
             throw new IllegalComponentResourceFileException("virtualFile path is not a valid component resource file path");
         }
@@ -25,7 +24,7 @@ public class ComponentResourceFile {
         relativePath = virtualFile.getPath().split(COMPONENT_RESOURCE_PATH_FLAG)[1];
     }
 
-    public void copyToDirectory(@NotNull String directoryPath) throws IOException {
+    public VirtualFile copyToDirectory(@NotNull String directoryPath) throws IOException {
         String relativeDir = getRelativeDir();
         if (StringUtil.isEmpty(relativeDir)) {
             relativeDir = "";
@@ -43,7 +42,7 @@ public class ComponentResourceFile {
             }
         }
         String containingFileDirPath = directoryPath + "/" + relativeDir;
-        FileUtil.copyFileToTargetDirectory(containingFileDirPath,virtualFile);
+        return FileUtil.copyFileToTargetDirectory(containingFileDirPath,virtualFile);
     }
 
     public String getRelativeDir() {

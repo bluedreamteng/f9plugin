@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class FileUtil {
 
-    public static void copyFileToTargetDirectory(String containingFileDirPath, VirtualFile virtualFile) throws IOException {
+    public static VirtualFile copyFileToTargetDirectory(String containingFileDirPath, VirtualFile virtualFile) throws IOException {
         VirtualFile containingDir = VfsUtil.createDirectoryIfMissing(containingFileDirPath);
         assert containingDir != null;
         if (virtualFile.isDirectory()) {
@@ -20,8 +20,9 @@ public class FileUtil {
             VirtualFile newDir = VfsUtil.createDirectoryIfMissing(newDirPath);
             assert newDir != null;
             VfsUtil.copyDirectory(FileUtil.class, virtualFile, newDir, null);
+            return containingDir;
         } else {
-            VfsUtil.copy(FileUtil.class, virtualFile, containingDir);
+            return VfsUtil.copy(FileUtil.class, virtualFile, containingDir);
         }
     }
 }
